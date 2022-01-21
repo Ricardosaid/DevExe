@@ -35,6 +35,13 @@ namespace BlobConnection
 
             BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
 
+            //Mandamos a imprimir el nombre del contenedor y finalizamos
+
+            Console.WriteLine("El contenedor" + containerName + "se ha creado " + 
+            "\n Tomara algunos minutos verificarlo");
+            Console.WriteLine("Presione una llave para continuar");
+            Console.ReadLine();
+
         }
     }
 }
