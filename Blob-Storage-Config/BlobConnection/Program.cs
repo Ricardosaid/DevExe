@@ -89,7 +89,28 @@ namespace BlobConnection
             Console.WriteLine("presione una tecla para continuar");
             Console.ReadLine();
 
+            /************************************************************************************************/
 
+            //Descargar el blbob creado a mi sistema local
+
+            // agregamos el Downloaded para diferenciarlo 
+            string downloadFilePath = localFilePath.Replace(".txt","Downloaded.txt");
+
+            Console.WriteLine("\n Descargando el blob \n ", downloadFilePath);
+
+            BlobDownloadInfo download = await blobClient.DownloadAsync();
+
+            using (FileStream downloadFileStream = File.OpenWrite(downloadFilePath))
+            {
+                await download.Content.CopyToAsync(downloadFileStream);
+                //cerrar file
+                downloadFileStream.Close();
+            }
+
+            Console.WriteLine("Presiona una tecla para continuar");
+            Console.ReadLine();
+
+            
 
 
         }
