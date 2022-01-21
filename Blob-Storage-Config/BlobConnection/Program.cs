@@ -27,6 +27,14 @@ namespace BlobConnection
             //Crea un cliente que pueda autenticarce con la cadena de conexión
             BlobServiceClient blobServiceClient = new BlobServiceClient(storageConnectionString);
 
+            //Creamos un unico nombre para el contenedor
+
+            string containerName = "Demoblob" + Guid.NewGuid().ToString();
+
+            //Creamos el contenedor y regresamos un objeto de cliente contenedor
+
+            BlobContainerClient containerClient = await blobServiceClient.CreateBlobContainerAsync(containerName);
+
         }
     }
 }
