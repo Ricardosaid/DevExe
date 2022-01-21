@@ -74,6 +74,21 @@ namespace BlobConnection
             Console.WriteLine("Presione una tecla para continuar");
             Console.ReadLine();
 
+            /*****************************************************************************/
+
+            //Listamos los blob dentro del contenedor
+
+            Console.WriteLine("\n Listando los blob ... \n");
+
+            await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
+            {
+                Console.WriteLine("\t " + blobItem.Name);
+
+            }
+
+            Console.WriteLine("presione una tecla para continuar");
+            Console.ReadLine();
+
 
 
 
