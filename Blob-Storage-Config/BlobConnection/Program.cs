@@ -47,7 +47,7 @@ namespace BlobConnection
 
             //Creamos un archivo local en el directorio ./data/ para actualizar y descargarlo
 
-            string localPath = "./data/";
+            string localPath = "./files/"; //creamos una carpeta llamada files en la raiz de nuestro proyecto, ahí agregaremos el .txt
             //creamos el archivo
             string fileName = "demofile" + Guid.NewGuid().ToString() + ".txt";
             //Concatenamos los valores de arriba
