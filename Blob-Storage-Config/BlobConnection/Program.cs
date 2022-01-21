@@ -57,6 +57,23 @@ namespace BlobConnection
 
             await File.WriteAllTextAsync(localFilePath,"Escribiendo texto ...");
 
+            //Obtenemos la referencia para el blob
+
+            BlobClient blobClient = containerClient.GetBlobClient(fileName);
+
+            Console.WriteLine("Actualizando el blob stora de la direccion {0}", blobClient.Uri);
+
+            //Abrimos el archivo y actualizamos la data
+
+            using FileStream uploadFileStream = File.OpenRead(localFilePath);
+            await blobClient.UploadAsync(uploadFileStream, true);
+            //No olvidar cerrar el archivo localfilepath
+            uploadFileStream.Close();
+
+            Console.WriteLine("\nEl archivo ha sido actualizado\n");
+            Console.WriteLine("Presione una tecla para continuar");
+            Console.ReadLine();
+
 
 
 
