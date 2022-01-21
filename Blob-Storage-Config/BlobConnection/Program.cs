@@ -107,10 +107,25 @@ namespace BlobConnection
                 downloadFileStream.Close();
             }
 
+            Console.WriteLine("\nCuando presione se va a borrar el contendor\n");
+
             Console.WriteLine("Presiona una tecla para continuar");
             Console.ReadLine();
 
+
+            /********************************************************************************************/
+
+            //Eliminamos un contenddr
             
+            await containerClient.DeleteAsync();
+
+            Console.WriteLine("Eliminando la fuente local y archivos descargados");
+
+            File.Delete(localFilePath);
+            File.Delete(downloadFilePath);
+
+            Console.WriteLine("Terminado y limpio");
+
 
 
         }
