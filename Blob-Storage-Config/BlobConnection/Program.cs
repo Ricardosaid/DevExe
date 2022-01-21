@@ -12,7 +12,8 @@ namespace BlobConnection
         {
             Console.WriteLine("Azure blob strogae exercise");
 
-            // Corremos el ejemplo asincronicamente
+            // Corremos el ejemplo asincronicamente, recordar que cada vez que corremos este metodo cremos un nuevo contenedor
+            //Poner condicional para no crear inncecesarios
 
             ProcessAsync().GetAwaiter().GetResult();
 
@@ -27,9 +28,9 @@ namespace BlobConnection
             //Crea un cliente que pueda autenticarce con la cadena de conexión
             BlobServiceClient blobServiceClient = new BlobServiceClient(storageConnectionString);
 
-            //Creamos un unico nombre para el contenedor
+            //Creamos un unico nombre para el contenedor (tomar en cuenta que el contenedor debe tener minusculas)
 
-            string containerName = "Demoblob" + Guid.NewGuid().ToString();
+            string containerName = "demoblob" + Guid.NewGuid().ToString();
 
             //Creamos el contenedor y regresamos un objeto de cliente contenedor
 
@@ -41,6 +42,23 @@ namespace BlobConnection
             "\n Tomara algunos minutos verificarlo");
             Console.WriteLine("Presione una llave para continuar");
             Console.ReadLine();
+
+            /************************************************************************************************/
+
+            //Creamos un archivo local en el directorio ./data/ para actualizar y descargarlo
+
+            string localPath = "./data/";
+            //creamos el archivo
+            string fileName = "demofile" + Guid.NewGuid().ToString() + ".txt";
+            //Concatenamos los valores de arriba
+            string localFilePath = Path.Combine(localPath,fileName);
+
+            //Exribimos texto al archivo
+
+            await File.WriteAllTextAsync(localFilePath,"Escribiendo texto ...");
+
+
+
 
         }
     }
