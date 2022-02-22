@@ -40,12 +40,22 @@ namespace ServiceBus
                 }
             }
 
+            try
+            {
+                //Try -> agregar los mensajes estén dentro del mensaje batch y manda un mensaje de exito si todo va bien
+                await sender.SendMessageAsync(messageBatch);
+                Console.WriteLine("El lote de {numOfMessage} mensajes ha sido publicado en la cola");
+            }
+            finally
+            {
+                // Llamaremos DisposeAsync en los tipos de cliente si es requerido aseguralos recursos de red  y otros obj no gestionados se limpian correctamente,
+                // Limpiamos los objetos sender y client
+                await sender.DisposeAsync ();
+                await client.DisposeAsync ();
+            }
 
-
-
-
-
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Presione una tecla para continuar");;
+            Console.ReadKey();
         }
     }
 }
