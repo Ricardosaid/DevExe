@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Azure.Messaging.ServiceBus;
 
 namespace ServiceBus
 {
@@ -16,7 +18,7 @@ namespace ServiceBus
         private const int numOfMessages = 5;
 
 
-        static async task Main()
+        static async Task Main()
         {
             // El service bus client usa un singleton, the best practice cuando publicamos o leemos mensajes
             //Crea un ciente que se usará para enviar y procesar los mensajes
@@ -36,14 +38,14 @@ namespace ServiceBus
                 if(!messageBatch.TryAddMessage(new ServiceBusMessage ($"Message {i}")))
                 {
                     //si es muy largo el lote, creamos excepcion
-                    throw new Exception($"The message {i} es muy largo para ponerlo en el lote");
+                    throw new Exception($"The message {i} es muy largo para ponerlo en el lote",numOfMessages);
                 }
             }
 
             try
             {
                 //Try -> agregar los mensajes estén dentro del mensaje batch y manda un mensaje de exito si todo va bien
-                await sender.SendMessageAsync(messageBatch);
+                await sender.SendMessagesAsync(messageBatch);
                 Console.WriteLine("El lote de {numOfMessage} mensajes ha sido publicado en la cola");
             }
             finally
