@@ -1,6 +1,14 @@
-# ParteDosBside
+# Developer and infra Azure
 
-## [1.FizzBuzz](https://dotnetfiddle.net/W6GXOd)
+## Objectives
+1. Cosmos DB 
+2. Storage 
+3. Application Insights
+4. .NET and c#
 
-## [2.Operaciones CRUD en c#](https://github.com/Ricardosaid/ParteDosBside/blob/main/bSide/bSide/Controllers/bSideCardsController.cs)
+## Requirements
++ Azure portal
++ JetBrains Riders
+
+### `saidleben`
 
